@@ -1,0 +1,41 @@
+<!-- Drop this in ~/Library/Preferences/PyCharm20/tools -->
+<!-- make sure you set the path to flake8 executable for your machine in the COMMAND option -->
+<!-- THIS LINE AND ABOVE AND WHITESPACE BELOW NEEDS TO BE REMOVED BEFORE COPYING -->
+ 
+<?xml version="1.0" encoding="UTF-8"?>
+<toolSet name="Flake8">
+  <tool name="Flake8 File" showInMainMenu="true" showInEditor="true" showInProject="true" showInSearchPopup="false" disabled="false" useConsole="true" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="/usr/local/share/python/flake8" />
+      <option name="PARAMETERS" value="--max-line-length=120 --ignore=E301,E302,E261,E262,W404 $FileDir$/$FileName$" />
+      <option name="WORKING_DIRECTORY" value="$FileDir$" />
+    </exec>
+    <filter>
+      <option name="NAME" value="Flake8 Output Filter" />
+      <option name="DESCRIPTION" value="" />
+      <option name="REGEXP" value="$FILE_PATH$\:$LINE$\:$COLUMN$\:.*" />
+    </filter>
+    <filter>
+      <option name="NAME" value="Flake8 Output Filter Case 2" />
+      <option name="DESCRIPTION" value="" />
+      <option name="REGEXP" value="$FILE_PATH$\:$LINE$\:.*" />
+    </filter>
+  </tool>
+  <tool name="Flake8 Directory" showInMainMenu="true" showInEditor="true" showInProject="true" showInSearchPopup="true" disabled="false" useConsole="true" synchronizeAfterRun="true">
+    <exec>
+      <option name="COMMAND" value="/usr/local/share/python/flake8" />
+      <option name="PARAMETERS" value="--max-line-length=120 --ignore=E301,E302,E261,E262,W404 $FileDir$" />
+      <option name="WORKING_DIRECTORY" value="$FileDir$" />
+    </exec>
+    <filter>
+      <option name="NAME" value="Flake8 Parser" />
+      <option name="DESCRIPTION" value="" />
+      <option name="REGEXP" value="$FILE_PATH$\:$LINE$\:$COLUMN$\:.*" />
+    </filter>
+    <filter>
+      <option name="NAME" value="Flake8 Output Parser Case 2" />
+      <option name="DESCRIPTION" value="" />
+      <option name="REGEXP" value="$FILE_PATH$\:$LINE$\:.*" />
+    </filter>
+  </tool>
+</toolSet>

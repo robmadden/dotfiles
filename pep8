@@ -1,0 +1,22 @@
+[pep8]
+#max_line_length = 80
+# until we get other issues under control...
+max_line_length = 120
+
+# base ignore list
+ignore = E301,E302,E261,E262,W404
+
+### Enable these if you want more of an explanation of the issue
+#show-pep8 = True
+#show-source = True
+
+
+#exclude
+#filename
+#select
+#count
+#format
+#quiet = 1
+#statistics
+#verbose
+
