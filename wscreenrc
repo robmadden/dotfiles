@@ -1,0 +1,30 @@
+startup_message off
+defscrollback 1024
+
+bind 
+bind 
+bind j focus down
+bind k focus up
+
+escape o
+
+# caption always "%{= kw}%-w%{= WB}%n %t%{-}%+w %-= @%H - %LD %d %LM - %C %a"
+caption always "%3n %t%? @%u%?%? [%h]%?"
+
+termcapinfo xterm*|rxvt*|kterm*|Eterm* hs:ts=\E]0;:fs=\007:ds=\E]0;\007
+
+hardstatus alwayslastline
+# hardstatus string "%h%? users: %u%?"
+hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %LD %d %LM - %C %a]'
+
+bind  eval "hardcopy_append off" "hardcopy -h $HOME/.screen-urlview" "screen urlview $HOME/.screen-urlview"
+
+# Export a variable denoting the original host screen was started on.
+# This is used by the bash.preexec stuff:
+# http://glyf.livejournal.com/63106.html?thread=210818
+setenv SCREEN_RUN_HOST $SCREEN_HOST
+setenv SCREEN_RUN_USER $USER
+setenv LC_SCREEN_RUN_HOST $SCREEN_HOST
+setenv LC_SCREEN_RUN_USER $USER
+
+screen -t android 0
