@@ -12,19 +12,24 @@ ZSH_THEME="robbyrussell"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wscreen="screen -T xterm -c ~/.wscreenrc"
 alias dv="dirs -v"
+alias hgqa='hg status -madn|grep -v .txt|xargs flake8 --config=~/.config/pep8'
+alias hgan="hg st | grep \? | cut -f2 -d' ' | xargs hg add"
+alias hgfo="hg st | grep ! | cut -f2 -d' ' | xargs hg forget"
+alias hgancestors="hg log -r 'ancestors(default) and not ancestors(stable)'"
+alias hl="hg log | less"
+alias hlo="hg log | less"
+alias hlg="hg log | less"
 alias hlog="hg log | less"
+alias hlgo="hg log | less"
+alias gl="git log | less"
+alias glo="git log | less"
 alias glog="git log | less"
-alias ggraph="git log --graph --decorate --oneline"
+alias glg="git log | less"
+alias glgo="git log | less"
+alias gg="git log --graph --decorate --oneline"
 alias ..="cd .."
-alias qa='hg status -madn|grep -v .txt|xargs flake8 --config=~/.config/pep8'
-alias sf='perl /Users/rob/Documents/git_repos/perl-scripts/snowflake.pl'
 alias cd="venv_cd"
 alias datafart='curl --data-binary @- datafart.com'
-alias add_new="hg st | grep \? | cut -f2 -d' ' | xargs hg add"
-alias forget_old="hg st | grep ! | cut -f2 -d' ' | xargs hg forget"
-alias hgancestors="hg log -r 'ancestors(default) and not ancestors(stable)'"
-alias logsearcher="/Users/rob/Documents/git_repos/scripts/logsearcher.sh"
-alias outboxsearcher="/Users/rob/Documents/git_repos/scripts/outboxsearcher.sh"
 
 # Set to this to use case-sensitive completion
 # CASE_SENSITIVE="true"
@@ -113,6 +118,10 @@ venv_cd () {
 
 host() {
     cat /etc/hosts | grep $1
+}
+
+gitall() {
+    git add . && git commit -m "$@" && git push origin master:master && git push heroku master
 }
 
 setopt nocorrectall;
