@@ -1,5 +1,5 @@
 startup_message off
-defscrollback 1024
+shell "/bin/zsh"
 
 bind 
 bind 
@@ -19,12 +19,61 @@ hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%
 
 bind  eval "hardcopy_append off" "hardcopy -h $HOME/.screen-urlview" "screen urlview $HOME/.screen-urlview"
 
-# Export a variable denoting the original host screen was started on.
-# This is used by the bash.preexec stuff:
-# http://glyf.livejournal.com/63106.html?thread=210818
+## Export a variable denoting the original host screen was started on.
+## This is used by the bash.preexec stuff:
+## http://glyf.livejournal.com/63106.html?thread=210818
 setenv SCREEN_RUN_HOST $SCREEN_HOST
 setenv SCREEN_RUN_USER $USER
 setenv LC_SCREEN_RUN_HOST $SCREEN_HOST
 setenv LC_SCREEN_RUN_USER $USER
 
-screen -t android 0
+# Allow bold colors - necessary for some reason
+attrcolor b ".I"
+
+# Erase background with current bg color
+defbce "on"
+
+# Enable 256 color term
+term xterm-256color
+
+# Cache 30000 lines for scroll back
+defscrollback 30000
+
+# Hide hardstatus: ctrl-a f 
+bind f eval "hardstatus ignore"
+# Show hardstatus: ctrl-a F
+bind F eval "hardstatus alwayslastline"
+
+
+screen -t spaceback 0
+stuff "cd spaceback"
+
+screen -t students 1
+stuff "cd Bloc/students/"
+
+screen -t austin_rea 2
+stuff "cd Bloc/students/austin_rea"
+
+screen -t bob_senoff 4
+stuff "cd Bloc/students/bob_senoff"
+
+screen -t dan_aguirre 6
+stuff "cd Bloc/students/dan_aguirre"
+
+screen -t danilo_martins 7
+stuff "cd Bloc/students/danilo_martins"
+
+screen -t gahee_heo 8
+stuff "cd Bloc/students/gahee_heo"
+
+screen -t isaac_kim 9
+stuff "cd Bloc/students/isaac_kim"
+
+screen -t james_shields 10
+stuff "cd Bloc/students/james_shields"
+
+screen -t john_carter 11
+stuff "cd Bloc/students/john_carter"
+
+screen -t sam_wu 12
+stuff "cd Bloc/students/sam_wu"

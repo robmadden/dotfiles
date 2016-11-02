@@ -1,131 +1,108 @@
-# Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+# Path to your oh-my-zsh installation.
+export ZSH=/Users/robmadden/.oh-my-zsh
 
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-alias wscreen="screen -T xterm -c ~/.wscreenrc"
-alias dv="dirs -v"
-alias hgqa='hg status -madn|grep -v .txt|xargs flake8 --config=~/.config/pep8'
-alias hgan="hg st | grep \? | cut -f2 -d' ' | xargs hg add"
-alias hgfo="hg st | grep ! | cut -f2 -d' ' | xargs hg forget"
-alias hgancestors="hg log -r 'ancestors(default) and not ancestors(stable)'"
-alias hl="hg log | less"
-alias hlo="hg log | less"
-alias hlg="hg log | less"
-alias hlog="hg log | less"
-alias hlgo="hg log | less"
-alias gl="git log | less"
-alias glo="git log | less"
-alias glog="git log | less"
-alias glg="git log | less"
-alias glgo="git log | less"
-alias gg="git log --graph --decorate --oneline"
-alias ..="cd .."
-alias cd="venv_cd"
-alias datafart='curl --data-binary @- datafart.com'
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+ZSH_THEME="ys"
 
-# Set to this to use case-sensitive completion
+# Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
-# Comment this out to disable weekly auto-update checks
-DISABLE_AUTO_UPDATE="true"
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-# Uncomment following line if you want to disable colors in ls
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
 
-# Uncomment following line if you want to disable autosetting terminal title.
+# Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
 
-# Uncomment following line if you want red dots to be displayed while waiting for completion
-# COMPLETION_WAITING_DOTS="true"
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="mm/dd/yyyy"
+
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git)
+# Add wisely, as too many plugins slow down shell startup.
+#plugins=(git bundler osx rake ruby docker gem go golang grunt rails rvm screen sudo)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
+# User configuration
 
-function collapse_pwd {
-    echo $(pwd | sed -e "s,^$HOME,~,")
-}
+# export MANPATH="/usr/local/man:$MANPATH"
 
-function prompt_char {
-    git branch >/dev/null 2>/dev/null && echo '±' && return
-    hg root >/dev/null 2>/dev/null && echo '☿' && return
-    echo '○'
-}
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-function battery_charge {
-    echo `$BAT_CHARGE` 2>/dev/null
-}
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
 
-function virtualenv_info {
-    [ $VIRTUAL_ENV ] && echo '('`basename $VIRTUAL_ENV`') '
-}
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
 
-function hg_prompt_info {
-    hg prompt --angle-brackets "\
-< on %{$fg[magenta]%}<branch>%{$reset_color%}>\
-< at %{$fg[yellow]%}<tags|%{$reset_color%}, %{$fg[yellow]%}>%{$reset_color%}>\
-%{$fg[green]%}<status|modified|unknown><update>%{$reset_color%}<
-patches: <patches|join( → )|pre_applied(%{$fg[yellow]%})|post_applied(%{$reset_color%})|pre_unapplied(%{$fg_bold[black]%})|post_unapplied(%{$reset_color%})>>" 2>/dev/null
-}
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
-function gexport="git format-patch -1 $1"
+# Set personal aliases, overriding those provided by oh-my-zsh libs,
+# plugins, and themes. Aliases can be placed here, though oh-my-zsh
+# users are encouraged to define aliases within the ZSH_CUSTOM folder.
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+alias students="cd /Users/robmadden/Bloc/students"
+alias wscreen="screen -c ~/.wscreenrc"
 
-tests() {
-    output=`cat ~/.hgrc | egrep "^pre-push"`
-    if [ $output != "" ];then
-        echo "true"
-    else
-        echo "false"
+# GIT
+alias master="git checkout master"
+alias pull="git fetch && git merge"
+alias prune="git branch | grep -v 'master' | xargs git branch -D"
+alias all="git branch -a"
+alias branch="git branch"
+alias remote="git branch -r"
+alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+function checkout() {
+    if [ -z `git branch | grep $1` ]; then
+        echo "$1 does not exist, creating..." && git checkout -b $1 origin/$1
+    else 
+        git checkout $1
     fi
 }
 
-PROMPT='
-%{$fg[magenta]%}%n%{$reset_color%} at %{$fg[yellow]%}%m%{$reset_color%} in %{$fg_bold[green]%}$(collapse_pwd)%{$reset_color%}$(hg_prompt_info)$(git_prompt_info)
-$(virtualenv_info)$(prompt_char) '
-
-RPROMPT='$(battery_charge)'
-
-ZSH_THEME_GIT_PROMPT_PREFIX=" on %{$fg[magenta]%}"
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[green]%}!"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
-ZSH_THEME_GIT_PROMPT_CLEAN=""
-
-export PATH=/usr/local/bin:$PATH:/usr/local/git/bin:/usr/local/mysql/bin:/opt/local/bin:/usr/local/sbin
-export LIBMEMCACHED=/opt/local/
-
-has_virtualenv() {
-   if [ -e .venv ]; then
-      workon `cat .venv`
-   fi
+function delete() {
+    git checkout -D $1
 }
-venv_cd () {
-   builtin cd "$@" && has_virtualenv
-}
-
-host() {
-    cat /etc/hosts | grep $1
-}
-
-gitall() {
-    git add . && git commit -m "$@" && git push origin master:master && git push heroku master
-}
-
-setopt nocorrectall;
-
-[[ -s $HOME/.pythonbrew/etc/bashrc ]] && source $HOME/.pythonbrew/etc/bashrc
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
