@@ -48,32 +48,3 @@ bind F eval "hardstatus alwayslastline"
 screen -t spaceback 0
 stuff "cd spaceback"
 
-screen -t students 1
-stuff "cd Bloc/students/"
-
-screen -t austin_rea 2
-stuff "cd Bloc/students/austin_rea"
-
-screen -t bob_senoff 4
-stuff "cd Bloc/students/bob_senoff"
-
-screen -t dan_aguirre 6
-stuff "cd Bloc/students/dan_aguirre"
-
-screen -t danilo_martins 7
-stuff "cd Bloc/students/danilo_martins"
-
-screen -t gahee_heo 8
-stuff "cd Bloc/students/gahee_heo"
-
-screen -t isaac_kim 9
-stuff "cd Bloc/students/isaac_kim"
-
-screen -t james_shields 10
-stuff "cd Bloc/students/james_shields"
-
-screen -t john_carter 11
-stuff "cd Bloc/students/john_carter"
-
-screen -t sam_wu 12
-stuff "cd Bloc/students/sam_wu"
