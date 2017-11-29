@@ -7,7 +7,7 @@ export ZSH=/Users/robmadden/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="avit"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -87,16 +87,36 @@ source $ZSH/oh-my-zsh.sh
 
 # ROB
 
+alias ls="exa"
+
+# SCREEN
+
 alias wscreen="screen -c ~/.wscreenrc"
+function set_screen_path() {
+  screen -X chdir "`pwd`"
+}
 
 # GIT
-alias master="git checkout master"
-alias pull="git fetch && git merge"
-alias prune="git branch | grep -v 'master' | xargs git branch -D"
-alias all="git branch -a"
-alias branch="git branch"
-alias remote="git branch -r"
-alias log="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias a="git branch -a"
+alias l="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias m="git checkout master"
+alias n="git remote prune origin"
+alias p="git fetch && git merge"
+alias r="git reset i--hard head"
+alias s="git status"
+alias t="git log | head -c 48 | awk '{ print \$2 }'"
+
+function delete() { 
+	git branch -D $1 && git push origin :$1
+}
+
+# Docker
+alias psqldocker="docker run -it --rm --network spbk_default --link spbk_db_1:postgres postgres:9.6.1-alpine psql -h postgres -U postgres"
+alias rmimages="docker rmi `docker images -f "dangling=true" -q`"
+
+# URL manipulation
+alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
+alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
 
 function checkout() {
     if [ -z `git branch | grep $1` ]; then
@@ -106,7 +126,10 @@ function checkout() {
     fi
 }
 
-function delete() {
-    git checkout -D $1
-}
-
+# Add Go to path
+export GOROOT=/usr/local/opt/go/libexec
+export GOPATH=/Users/robmadden/go
+export PATH=/usr/local/opt/go/libexec/bin:$PATH:$GOPATH/bin:/Users/robmadden/anaconda2/bin:$PATH
+export NVM_DIR="$HOME/.nvm"
+  . "/usr/local/opt/nvm/nvm.sh"
+export PROMPT_COMMAND=set_screen_path
