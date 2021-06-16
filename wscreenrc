@@ -13,7 +13,7 @@ caption always "%3n %t%? @%u%?%? [%h]%?"
 
 termcapinfo xterm*|rxvt*|kterm*|Eterm* hs:ts=\E]0;:fs=\007:ds=\E]0;\007
 
-backtick 1 0 1 git-current-branch
+backtick 1 0 1 git branch --show-current
 
 hardstatus alwayslastline "%-w%{.bw}%n %t%{-}%+w %-45= %1`"
 # hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f %t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %LD %d %LM - %C %a]'
@@ -46,21 +46,5 @@ bind f eval "hardstatus ignore"
 bind F eval "hardstatus alwayslastline"
 
 
-screen -t phantasm 0
-stuff "cd ~/spbk/phantasm"
-
-screen -t docker-compose 1
-stuff "cd ~/spbk/amplify"
-
-screen -t docker-compose-bash 2 
-stuff "cd ~/spbk/amplify"
-
-screen -t amplify 3
-stuff "cd ~/spbk/amplify"
-
-screen -t amplify 4
-stuff "cd ~/spbk/amplify"
-
-screen -t school 5
-stuff "cd ~/Google\ Drive/School/"
-
+screen -t blah 0 
+stuff "cd ~"
